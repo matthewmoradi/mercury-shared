@@ -22,10 +22,15 @@ namespace mercury.business
             try
             {
                 string path = Directory.GetCurrentDirectory() + "/cnf";
-                return File.ReadAllLines(path).Where(x => x.Contains(key + ":"))
-                    .FirstOrDefault().Split(':').ToList().Where(x => !string.IsNullOrEmpty(x) && x != key).FirstOrDefault();
+                var cnt = File.ReadAllLines(path);
+                return cnt.Where(x => x.Contains(key + "~"))
+                    .FirstOrDefault().Split('~').ToList().Where(x => !string.IsNullOrEmpty(x) && x != key).FirstOrDefault();
             }
-            catch { return null; }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
         }
         public static string image_resize(string base64, int size)
         {
@@ -68,7 +73,7 @@ namespace mercury.business
                 return "";
             }
         }
-        
+
         public static List<string> search(string dir_sub, string filename)
         {
             List<string> ret = new List<string>();

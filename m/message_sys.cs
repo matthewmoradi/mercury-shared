@@ -13,7 +13,8 @@ namespace mercury.model
         
         public static string failed = "Failed";
         public static string NOT_OK = "NOT OK";
-        public static string NOT_AUTHED = "NOT AUTHED";        
+        public static string NOT_AUTHED = "NOT AUTHED";  
+        public static string wrong_parameters = "WRONG PARAMETERS";
         public static string unknow = "Unknow";
         public static string success = "Success";
         public static string action_not_found = "Action Not Found";

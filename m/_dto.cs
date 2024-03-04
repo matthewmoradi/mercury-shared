@@ -33,6 +33,7 @@ namespace mercury.model
             public static string response_code_redirect = "301";
             public static string response_code_logout = "302";
             public static string response_code_refresh = "303";
+            public msg() { }
             public msg(string _code, string _str, string _data, bool _success, int? size = null)
             {
                 this.code = _code;
@@ -71,13 +72,13 @@ namespace mercury.model
             }
             public static msg success_(string str = null)
             {
-                if(str == null)
+                if (str == null)
                     str = message_sys.success;
                 return new dto.msg(response_code_valid, str, "", true);
             }
             public static msg fail_(string str = null)
             {
-                if(str == null)
+                if (str == null)
                     str = message_sys.failed;
                 return new dto.msg(response_code_valid, str, "", false);
             }
@@ -151,7 +152,7 @@ namespace mercury.model
                 this._0 = _0;
             }
         }
-        
+
         public class zp_res
         {
             // {\"Status\":-11,\"Authority\":\"\",\"errors\":{\"Description\":[\"The description field is required.\"]}}
@@ -160,7 +161,7 @@ namespace mercury.model
             public string errors { get; set; }
             public string RefID { get; set; }
             public zp_res()
-            {}
+            { }
         }
     }
 }
