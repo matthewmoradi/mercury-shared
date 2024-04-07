@@ -15,6 +15,12 @@ namespace mercury.controller
     public class ctrl_tools : Controller
     {
         #region tools
+        public static string header_get(HttpRequest req, string key)
+        {
+            if (req.Headers.ContainsKey(key))
+                return req.Headers[key];
+            return null;
+        }
         public static string cookie_get(HttpRequest req, string key)
         {
             if (req.Cookies.ContainsKey(key))
@@ -73,8 +79,8 @@ namespace mercury.controller
         }
         public static user get_user(HttpRequest req, List<user> users, List<session> sessions)
         {
-            string user_id = cookie_get(req, "user_id");
-            string token = cookie_get(req, "token");
+            string user_id = header_get(req, "user_id");
+            string token = header_get(req, "token");
             if (user_id == null || token == null)
                 return null;
             user _user = users.FirstOrDefault(x => x.id == user_id);
