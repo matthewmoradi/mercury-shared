@@ -1,8 +1,3 @@
-using System;
-using System.Linq;
-using mercury.business;
-using Newtonsoft.Json;
-
 namespace mercury.model
 {
     public class user

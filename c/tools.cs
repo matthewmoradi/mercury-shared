@@ -15,6 +15,12 @@ namespace mercury.controller
     public class ctrl_tools : Controller
     {
         #region tools
+        public static Dictionary<string, string> decode_parameters(string body)
+        {
+            // decryption
+            Dictionary<string, string> parameters = JsonConvert.DeserializeObject<Dictionary<string, string>>(body);
+            return parameters;
+        }
         public static string header_get(HttpRequest req, string key)
         {
             if (req.Headers.ContainsKey(key))
@@ -27,7 +33,7 @@ namespace mercury.controller
                 return req.Cookies[key];
             return null;
         }
-        public static ActionResult _500(Controller c,string str = "NOT OK")
+        public static ActionResult _500(Controller c, string str = "NOT OK")
         {
             return c.Json(new dto.msg("500", str, ""));
         }
@@ -77,16 +83,20 @@ namespace mercury.controller
         {
             return sessions.Any(x => x.user_id == user_id && x.token == token && x.status == (int)entity.enum_session_statuses.active);
         }
-        public static user get_user(HttpRequest req, List<user> users, List<session> sessions)
+        public static user get_user(string user_id, string token, List<user> users, List<session> sessions)
         {
-            string user_id = header_get(req, "user_id");
-            string token = header_get(req, "token");
             if (user_id == null || token == null)
                 return null;
             user _user = users.FirstOrDefault(x => x.id == user_id);
             if (_user == null || !is_token_active(sessions, user_id, token))
                 return null;
             return _user;
+        }
+        public static user get_user(HttpRequest req, List<user> users, List<session> sessions)
+        {
+            string user_id = header_get(req, "user_id");
+            string token = header_get(req, "token");
+            return get_user(user_id, token, users, sessions);
         }
         #endregion
         public static user validate(user _user, string token, string prm, bool g, bool g_, bool _, bool _0)

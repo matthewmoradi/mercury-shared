@@ -1,10 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using mercury.business;
-
 namespace mercury.model
 {
     public class chat

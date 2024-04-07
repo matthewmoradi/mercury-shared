@@ -1,11 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection.Metadata;
-using System.Reflection;
-using Newtonsoft.Json;
-using mercury.business;
-
 namespace mercury.model
 {
     public class message_sys
