@@ -92,6 +92,32 @@ namespace mercury.model
             }
         }
 
+        public class msg_ws_recv
+        {
+            public string token { get; set; }
+            public string user_id { get; set; }
+            public string action { get; set; }
+            public string data { get; set; }
+            public msg_ws_recv() { }
+        }
+        public class msg_ws
+        {
+            public string action { get; set; }
+            public string data { get; set; }
+            public bool success { get; set; }
+            public msg_ws() { }
+            public msg_ws(string action, string data, bool success)
+            {
+                this.action = action;
+                this.data = data.ToString();
+                this.success = success;
+            }
+            public static msg_ws authed()
+            {
+                return new msg_ws("auth", "", true);
+            }
+        }
+
         [Serializable]
         public class clock
         {
