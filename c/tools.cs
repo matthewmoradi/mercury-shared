@@ -88,7 +88,10 @@ namespace mercury.controller
             if (user_id == null || token == null)
                 return null;
             user _user = users.FirstOrDefault(x => x.id == user_id);
-            if (_user == null || !is_token_active(sessions, user_id, token))
+            if (_user == null)
+                return null;
+            // System.Console.WriteLine(_user.username);
+            if(!is_token_active(sessions, user_id, token))
                 return null;
             return _user;
         }

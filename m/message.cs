@@ -13,6 +13,7 @@ namespace mercury.model
         public string attachment_id { get; set; }
         public int type { get; set; } = 0;
         public bool has_link { get; set; } = false;
+        public bool read { get; set; } = false;
         public long dt_sent { set; get; }
         public long dt_update { set; get; }
     }
